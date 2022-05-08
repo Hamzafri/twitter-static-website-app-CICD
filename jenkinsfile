@@ -69,32 +69,12 @@ pipeline {
           }
      }
 
-
-
-      stage ('Login and Push Image on a local registry') {
-          agent any
-          steps {
-             script {
-               sh '''
-                   docker tag $IMAGE_NAME:$IMAGE_TAG localhost:5000/$IMAGE_NAME:$IMAGE_TAG
-                   docker push localhost:5000/$IMAGE_NAME:$IMAGE_TAG
-               '''
-             }
-          }
-      }     
      
      
      
 
 
 
-  }
-
-
-  post {
-    always {
-      discordSend description: 'Jenkins Pipeline Build', webhookURL: 'https://discord.com/api/webhooks/971457836276121670/Z-aLx7cJULq_p9nwlXhqOldM_fiecpxgmuvNdubxHxqha-uvkFhlXO3XW_mytk_GmYmj'
-    }
   }
 
 }
